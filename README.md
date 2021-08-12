@@ -8,19 +8,15 @@ handy code encapsulation in react-native project.
 npm install react-native-deepcode-toolkit
 ```
 
-## Usage
+## Content
 
-```js
-import DeepcodeToolkit from "react-native-deepcode-toolkit";
+support following feature :
+1. support listen application come to foreground and back to background
+2. support lock screen , and listen screen change(has bug in ios platform)
 
-// ...
+## TODO
+consider use more reliable orientation library : https://github.com/wonday/react-native-orientation-locker
 
-const result = await DeepcodeToolkit.multiply(3, 7);
-```
-
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
 ## License
 
