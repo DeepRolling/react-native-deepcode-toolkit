@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import type { StateHookReturnType } from '../../utils/type';
 
 type IosUpdateDisplayState = {
   show: boolean;
@@ -58,10 +59,7 @@ export function useIosUpdateChecker(
   isAndroid: boolean,
   iosBundleId: string,
   iosVersion: string
-): [
-  IosUpdateDisplayState,
-  React.Dispatch<React.SetStateAction<IosUpdateDisplayState>>
-] {
+): StateHookReturnType<IosUpdateDisplayState> {
   const [displayIosUpdateWindow, setDisplayIosUpdateWindow] =
     useState<IosUpdateDisplayState>({
       show: false,

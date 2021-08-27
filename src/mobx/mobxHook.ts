@@ -1,13 +1,18 @@
 import { DependencyList, MutableRefObject, useEffect, useRef } from 'react';
 import { autorun } from 'mobx';
 
-export function useAutoRun(action: () => void, deps?: DependencyList) {
+export function useAutoRun(
+  action: () => void,
+  deps?: DependencyList,
+  clear?: () => void
+) {
   useEffect(
     () => {
       let persistenceDataDisposer = autorun(() => {
         action();
       });
       return () => {
+        clear?.();
         persistenceDataDisposer();
       };
     },

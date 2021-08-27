@@ -1,6 +1,6 @@
 {
   "name": "react-native-deepcode-toolkit",
-  "version": "0.1.7",
+  "version": "0.2.4",
   "description": "handy code encapsulation in react-native project.",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",

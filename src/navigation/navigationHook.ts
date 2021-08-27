@@ -1,22 +1,25 @@
-import { useEffect } from 'react';
+import { DependencyList, useEffect } from 'react';
 import { BackHandler } from 'react-native';
 import { navigationHelper } from './navigationHelper';
 import type { StackNavigationProp } from '@react-navigation/stack/lib/typescript/src/types';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-export function useBackAction(action: () => void) {
-  useEffect(() => {
-    BackHandler.addEventListener(
-      'hardwareBackPress',
-      navigationHelper.backAction
-    );
-    return () => {
-      BackHandler.removeEventListener(
+export function useBackAction(action: () => boolean, deps?: DependencyList) {
+  useEffect(
+    () => {
+      BackHandler.addEventListener(
         'hardwareBackPress',
-        navigationHelper.backAction
+        action
       );
-    };
-  }, []);
+      return () => {
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+          action
+        );
+      };
+    },
+    deps === undefined ? [] : deps //eslint-disable-line react-hooks/exhaustive-deps
+  );
 }
 
 export function useScreenFocus(actions: (() => void)[]) {
@@ -43,10 +46,7 @@ export function useScreenBlur(actions: (() => void)[]) {
   useEffect(() => {
     const disposerArray: (() => void)[] = [];
     for (let action of actions) {
-      const eachDisposer = navigationWithoutWrapper.addListener(
-        'blur',
-        action
-      );
+      const eachDisposer = navigationWithoutWrapper.addListener('blur', action);
       disposerArray.push(eachDisposer);
     }
     return () => {
