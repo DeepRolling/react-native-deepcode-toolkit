@@ -1,13 +1,13 @@
-import React, { createContext, useMemo, useState } from 'react';
-import { customThemeStyleSheet, ThemeProfile } from '../theme/theme';
+import React, { createContext, Dispatch, SetStateAction, useMemo, useState } from 'react';
+import { customThemeStyleSheet, ThemeProfile } from './theme';
 
 export const ColorThemeContext = createContext<
   | {
-      colorTheme: ThemeProfile;
-      setColors: any;
-    }
+  colorTheme: ThemeProfile;
+  setColors: Dispatch<SetStateAction<ThemeProfile>>;
+}
   | undefined
->(undefined);
+  >(undefined);
 
 export const ColorThemeProvider = function (props: { children: any }) {
   const [colorTheme, setColors] = useState<ThemeProfile>(

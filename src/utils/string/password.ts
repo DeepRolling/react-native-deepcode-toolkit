@@ -1,5 +1,10 @@
 import {isHaveChineseChars} from '../string';
 
+
+export const determineValidPhoneEmail = (phoneEmail: string) => {
+  return checkPhoneEmail(phoneEmail)[1] as boolean;
+};
+
 /**
  * 校验手机号和邮箱
  * @param {string} account, 手机号或邮箱
