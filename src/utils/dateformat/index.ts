@@ -3,6 +3,10 @@ import { nanoid } from 'nanoid';
 import R from 'ramda';
 import { deepcopy } from '../object';
 
+export function generateUUID(size?: number) {
+  return nanoid(size);
+}
+
 export function transDataToTimeStamp(
   date: string,
   dateFormat: string,
@@ -153,7 +157,7 @@ function dateFormat(fmt: string, date: Date) {
   return fmt;
 }
 
-const curriedDateformat =
+export const curriedDateformat =
   R.curry<(fmt: string, date: Date) => string>(dateFormat);
 
 /**

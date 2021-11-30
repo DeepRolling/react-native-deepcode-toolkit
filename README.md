@@ -1,6 +1,14 @@
 # react-native-deepcode-toolkit
 
-handy code encapsulation in react-native project.
+Handy code encapsulation in react-native project.
+
+The gist of this library is collect the handy code to offer some useful ability to your application .
+
+We offer following ability :
+
+* application foreground and background change hook
+* component lifecycle function (such useEffectWithoutFirstTime...)
+* ui distance calculate (expose handy function to calculate ui distance by design picture)
 
 ## Installation
 

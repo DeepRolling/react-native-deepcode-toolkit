@@ -22,7 +22,7 @@ export function useBackAction(action: () => boolean, deps?: DependencyList) {
   );
 }
 
-export function useScreenFocus(actions: (() => void)[]) {
+export function useScreenFocus(actions: (() => void)[], deps?: DependencyList) {
   const navigationWithoutWrapper = useStackNavigation();
   useEffect(() => {
     const disposerArray: (() => void)[] = [];
@@ -38,7 +38,7 @@ export function useScreenFocus(actions: (() => void)[]) {
         disposerArrayElement();
       }
     };
-  }, [navigationWithoutWrapper]); //eslint-disable-line react-hooks/exhaustive-deps
+  }, [navigationWithoutWrapper, ...(deps === undefined ? [] : deps)]); //eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export function useScreenBlur(actions: (() => void)[]) {

@@ -1,32 +1,47 @@
-import React, { createContext, Dispatch, SetStateAction, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  Dispatch,
+  ReactElement,
+  SetStateAction,
+  useMemo,
+  useState,
+} from 'react';
 import { customThemeStyleSheet, ThemeProfile } from './theme';
 
-export const ColorThemeContext = createContext<
+export type ContextType<T> =
   | {
-  colorTheme: ThemeProfile;
-  setColors: Dispatch<SetStateAction<ThemeProfile>>;
+  colorTheme: T;
+  setColors: Dispatch<SetStateAction<T>>;
 }
-  | undefined
-  >(undefined);
+  | undefined;
 
-export const ColorThemeProvider = function (props: { children: any }) {
-  const [colorTheme, setColors] = useState<ThemeProfile>(
-    customThemeStyleSheet.lightNormal
-  ); //setting light theme as default
+export function injectColorThemeProfile<T>(
+  defaultColorValue: T
+): [
+  React.Context<ContextType<T>>,
+  (props: { children: any }) => ReactElement | null,
+  () => ContextType<T>
+] {
+  const ColorThemeContext = createContext<ContextType<T>>(undefined);
 
-  const value = useMemo(
-    () => ({
-      colorTheme,
-      setColors,
-    }),
-    [colorTheme, setColors]
-  );
+  const ColorThemeProvider = function (props: { children: any }) {
+    const [colorTheme, setColors] = useState<T>(defaultColorValue); //setting light theme as default
 
-  return (
-    <ColorThemeContext.Provider value={value}>
-      {props.children}
-    </ColorThemeContext.Provider>
-  );
-};
+    const value = useMemo(
+      () => ({
+        colorTheme,
+        setColors,
+      }),
+      [colorTheme, setColors]
+    );
 
-export const useColorTheme = () => React.useContext(ColorThemeContext)!!;
+    return (
+      <ColorThemeContext.Provider value={value}>
+        {props.children}
+      </ColorThemeContext.Provider>
+    );
+  };
+
+  const useColorTheme = () => React.useContext(ColorThemeContext)!!;
+  return [ColorThemeContext, ColorThemeProvider, useColorTheme];
+}

@@ -2,13 +2,19 @@ import { AppState, AppStateStatus } from 'react-native';
 import { DependencyList, useEffect, useRef, useState } from 'react';
 
 /**
- * app前后台状态改变的回调集合
+ * hold all listener for application state change listening
  */
 export const appStateChangeHookArray: Map<
   string,
   (foreground: boolean) => void
 > = new Map<string, (_: boolean) => void>();
 
+/**
+ * use this hooks to listen application switch between foreground and background
+ * @param reasonKey why you need subscribe the state of application change
+ * @param callback the action you want to execute when application state change
+ * @param deps extra dependencies
+ */
 export function useAppForegroundAndBackgroundChangeListener(
   reasonKey: string,
   callback: (foreground: boolean) => void,
@@ -26,6 +32,8 @@ export function useAppForegroundAndBackgroundChangeListener(
     deps === undefined ? [callback] : deps.concat(callback) //eslint-disable-line react-hooks/exhaustive-deps
   );
 }
+
+
 
 export function useAppForegroundAndBackgroundChange() {
   const appState = useRef(AppState.currentState);
