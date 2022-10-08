@@ -1,0 +1,182 @@
+{
+  "name": "react-native-deepcode-toolkit",
+  "version": "0.4.0",
+  "description": "handy code encapsulation in react-native project.",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/src/index.d.ts",
+  "files": [
+    "src",
+    "lib",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "android",
+    "ios",
+    "cpp",
+    "react-native-deepcode-toolkit.podspec",
+    "!lib/typescript/example",
+    "!android/build",
+    "!ios/build"
+  ],
+  "scripts": {
+    "test": "jest",
+    "typescript": "tsc --noEmit",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "prepare": "bob build",
+    "release": "release-it",
+    "example": "yarn --cwd example",
+    "pods": "cd example && pod-install --quiet",
+    "bootstrap": "yarn example && yarn && yarn pods"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android"
+  ],
+  "repository": "https://gitlab.com/deepcodestudio/react-native-deepcode-toolkit.git",
+  "author": "deepcode <deepcode1024@163.com> (http://www.deepcode.site)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/deepcodestudio/react-native-deepcode-toolkit.git/issues"
+  },
+  "homepage": "https://gitlab.com/deepcodestudio/react-native-deepcode-toolkit.git#readme",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^11.0.0",
+    "@finsiot/eslint-config-finsiot-react-native": "^1.0.6",
+    "@react-native-async-storage/async-storage": "^1.15.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@react-native-community/netinfo": "^6.0.0",
+    "@react-navigation/native": "^5.9.3",
+    "@react-navigation/stack": "^5.14.3",
+    "@release-it/conventional-changelog": "^2.0.0",
+    "@types/jest": "^26.0.0",
+    "@types/ramda": "^0.27.38",
+    "@types/react": "^16.9.19",
+    "@types/react-native": "0.64.8",
+    "@types/react-native-vector-icons": "^6.4.6",
+    "commitlint": "^11.0.0",
+    "dianvo-native-android-xupdate": "^0.1.7",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "mobx": "^5.15.6",
+    "mobx-react": "^6.3.0",
+    "pod-install": "^0.1.0",
+    "prettier": "^2.0.5",
+    "ramda": "^0.27.1",
+    "react-native-android-open-settings": "^1.3.0",
+    "react-native-builder-bob": "^0.18.1",
+    "react-native-code-push": "^7.0.0",
+    "react-native-deep-toast-android": "^0.1.1",
+    "react-native-image-crop-picker": "^0.35.4",
+    "react-native-orientation": "^3.1.4",
+    "react-native-permissions": "^3.0.1",
+    "react-native-simple-toast": "^1.1.3",
+    "react-native-status-bar-height": "^2.6.0",
+    "react-native-vector-icons": "^7.1.0",
+    "release-it": "^14.2.2",
+    "typescript": "^4.1.3"
+  },
+  "peerDependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.5",
+    "@react-native-community/netinfo": "^6.0.0",
+    "@react-navigation/native": "^5.9.3",
+    "@react-navigation/stack": "^5.14.3",
+    "@types/ramda": "^0.27.38",
+    "@types/react-native-vector-icons": "^6.4.6",
+    "dianvo-native-android-xupdate": "^0.1.7",
+    "mobx": "^5.15.6",
+    "mobx-react": "^6.3.0",
+    "ramda": "^0.27.1",
+    "react": "*",
+    "react-native": "*",
+    "react-native-android-open-settings": "^1.3.0",
+    "react-native-code-push": "^7.0.0",
+    "react-native-deep-toast-android": "^0.1.1",
+    "react-native-image-crop-picker": "^0.35.4",
+    "react-native-orientation": "^3.1.4",
+    "react-native-permissions": "^3.0.1",
+    "react-native-simple-toast": "^1.1.3",
+    "react-native-status-bar-height": "^2.6.0",
+    "react-native-vector-icons": "^7.1.0"
+  },
+  "jest": {
+    "preset": "react-native",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/node_modules",
+      "<rootDir>/lib/"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@react-native-community",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "quoteProps": "consistent",
+          "singleQuote": true,
+          "tabWidth": 2,
+          "trailingComma": "es5",
+          "useTabs": false
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  },
+  "dependencies": {
+    "react-native-get-random-values": "^1.7.0"
+  }
+}
